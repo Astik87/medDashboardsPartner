@@ -1,0 +1,16 @@
+.events-list {
+    margin-top: 20px;
+    height: 60vh;
+    overflow-y: auto;
+}
+
+.events-list__item {
+    width: 100%;
+    margin-top: 20px;
+    transition: .5s all;
+}
+
+.events-list__item:hover {
+    color: #ffffff;
+    background-color: #c6221f;
+}

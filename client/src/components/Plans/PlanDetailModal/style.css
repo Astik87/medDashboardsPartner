@@ -1,0 +1,104 @@
+.plan-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.plan {
+    position: relative;
+    padding: 20px;
+    max-height: 80vh;
+    width: 80vw;
+    max-width: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.plan-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.plan-close:before,
+.plan-close:after {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 1px;
+    background-color: #000;
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+
+.plan-close:before {
+    transform: translateY(-50%) rotateZ(45deg);
+}
+
+.plan-close:after {
+    transform: translateY(-50%) rotateZ(-45deg);
+}
+
+.plan-telemarketers-list {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 2px solid rgba(80, 80, 80, 0.25);
+}
+
+.plan-telemarketers-list:last-child {
+    border-bottom: none;
+}
+
+.plan__doctors-list {
+    width: 50%;
+}
+
+.plan__doctors-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    color: #c6221f;
+}
+
+.plan__doctors-item.conducted {
+    color: #34C759;
+}
+
+.plan__doctors-name {
+    margin-right: 20px;
+}
+
+@media screen and (max-width: 420px) {
+    .plan-telemarketers-list {
+        flex-direction: column;
+    }
+
+    .plan-telemarketer,
+    .plan__doctors-list {
+        width: 100%;
+    }
+
+    .plan__doctors-list {
+        margin-top: 10px;
+        padding-left: 10px;
+    }
+}
+
+@media screen and (max-width: 620px){
+    .plan__doctors-item {
+        flex-direction: column;
+    }
+}

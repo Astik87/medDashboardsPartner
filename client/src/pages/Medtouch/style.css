@@ -1,0 +1,84 @@
+.medtouch-page__content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 35px;
+}
+
+.medtouch-page__left {
+    width: 32%;
+}
+
+.medtouch-page__right {
+    width: 65%;
+}
+
+.registered-total {
+    display: flex;
+    align-items: center;
+
+}
+
+.registered-total__icon {
+    margin-right: 30px;
+}
+
+.registered-total__value span {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.registered-total__value-text {
+    font-size: 12px;
+    color: #a0afc4;
+}
+
+.medtouch-page__content .top-five-block {
+    margin-top: 20px;
+}
+
+.medtouch-page__registrations-chart,
+.medtouch-page__events-chart {
+    height: 33vw;
+    min-height: 250px;
+    max-height: 340px;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 1200px){
+    .medtouch-page__content {
+        flex-direction: column;
+    }
+
+    .medtouch-page__left,
+    .medtouch-page__right {
+        width: 100%;
+    }
+
+    .medtouch-page__right {
+        margin-top: 20px;
+    }
+
+    .medtouch-page__left {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .registered-total-block {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .medtouch-page__left .top-five-block {
+        width: 49%;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    .medtouch-page__left .top-five-block {
+        width: 100%;
+    }
+}

@@ -1,0 +1,22 @@
+.notifications {
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 50%;
+    background-color: #587EFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.has-notifications:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #FF784E;
+}

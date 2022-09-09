@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@utils/*": ["src/utils/*"],
+      "@pages/*": ["src/pages/*"],
+      "@adminPages/*": ["src/adminPages/*"],
+      "@api/*": ["src/api/*"],
+      "@styles/*":  ["src/styles/*"],
+      "@images/*": ["src/images/*"],
+      "@globals/*": ["src/globals/*"]
+    }
+  },
+  "exclude": ["node_modules", "build", "public"]
+}

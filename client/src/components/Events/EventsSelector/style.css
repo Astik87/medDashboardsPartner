@@ -1,0 +1,8 @@
+.events-selector__btn {
+    margin-left: auto;
+}
+
+.events-selector__content {
+    width: 80vw;
+    max-width: 420px;
+}

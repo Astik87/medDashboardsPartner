@@ -1,0 +1,28 @@
+.page-top__right {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.plan-telemarketer {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    font-weight: 500;
+}
+
+.plans-chart {
+    height: 340px;
+    margin-bottom: 20px;
+}
+
+.plans-page.page__content {
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 420px){
+    button.add-plan-btn  {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}

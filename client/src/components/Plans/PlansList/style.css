@@ -1,0 +1,12 @@
+.plans-list {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+@media screen and (max-width: 992px){
+    .plans-list {
+        justify-content: center;
+    }
+}

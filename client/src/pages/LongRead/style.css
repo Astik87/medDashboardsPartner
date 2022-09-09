@@ -1,0 +1,121 @@
+.page-long-read-content {
+    margin-top: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-long-read-content__left {
+    width: 66%;
+}
+
+.page-long-read-content__right {
+    width: 32%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dashboard-block.long-read .dashboard-block-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.long-read-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #EDEFF2;
+    padding: 20px 15px;
+    border-radius: 10px;
+    width: 30%;
+}
+
+.long-read-block-text {
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+.long-read-block-text span {
+    font-size: 12px;
+    color: #a0afc4;
+}
+
+.long-read-block-value {
+    color: #ffffff;
+    padding: 7px 10px;
+    font-size: 12px;
+    border-radius: 10px;
+}
+
+.long-read-block-value--gray {
+    background-color: #aab5c0;
+}
+
+.long-read-block-value--blue {
+    background-color: #007AFF;
+}
+
+.long-read-block-value--green {
+    background-color: #34C759;
+}
+
+.directions-chart {
+    margin-top: 20px;
+}
+
+.long-read__videos-and-tests {
+    height: 48%;
+}
+
+.page-long-read-content__right .top-five-block {
+    height: 48%;
+}
+
+.long-read__videos-and-tests .long-read-block {
+    width: 100%;
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 1360px){
+    .page-long-read-content {
+        flex-direction: column;
+    }
+
+    .page-long-read-content__left,
+    .page-long-read-content__right{
+        width: 100%;
+    }
+
+    .page-long-read-content__right {
+        flex-direction: row;
+        margin-top: 30px;
+    }
+
+    .page-long-read-content__right .top-five-block,
+    .long-read__videos-and-tests {
+        width: 48%;
+    }
+}
+
+@media screen and (max-width: 960px){
+    .dashboard-block-content {
+        flex-direction: column;
+    }
+
+    .long-read-block {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 568px){
+    .page-long-read-content__right {
+        flex-direction: column;
+    }
+
+    .page-long-read-content__right .top-five-block,
+    .long-read__videos-and-tests {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

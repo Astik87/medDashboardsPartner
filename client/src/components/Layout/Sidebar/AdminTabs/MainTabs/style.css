@@ -1,0 +1,7 @@
+.admin-tabs path {
+    fill: #BFCBDB;
+}
+
+.admin-tabs .current path {
+    fill: #3361FF;
+}

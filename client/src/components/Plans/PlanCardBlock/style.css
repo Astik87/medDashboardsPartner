@@ -1,0 +1,10 @@
+.plans-list__item-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 15px;
+    padding-right: 4px;
+    background-color: #edeff2;
+    border-radius: 10px;
+    margin-bottom: 7px;
+}

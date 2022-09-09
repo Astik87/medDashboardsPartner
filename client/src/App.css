@@ -1,0 +1,118 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body,
+html,
+#root{
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: 'Inter', sans-serif;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+body {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+img {
+  display: block;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f8f8;
+}
+
+.container {
+  max-width: 89.3vw;
+}
+
+.container--content {
+  max-width: 80vw;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.jcsb {
+  justify-content: space-between;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  height: calc(100vh - 100px);
+}
+
+.content-wrapper > .content {
+  width: calc(100vw - 200px);
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.page {
+  padding-top: 40px;
+  padding-right: 40px;
+  background-color: #f8f8f8;
+  height: 100%;
+}
+
+.page__content {
+  padding-top: 35px;
+}
+
+.export-page-container {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+
+@media screen and (max-width: 768px){
+  .content-wrapper {
+    flex-direction: column-reverse;
+    /*height: calc(100vh - 100px);*/
+    height: calc(var(--vh, 1vh) * 100 - 65px);
+  }
+
+  .content-wrapper > .content {
+    width: 100%;
+    height: 100%;
+  }
+
+  .sidebar {
+    border-right: none;
+    border-top: 2px solid #EDEFF2;
+    margin: 0;
+    max-width: 100%;
+    height: 75px;
+    padding: 10px;
+    min-height: unset;
+  }
+
+  .page {
+    padding: 15px;
+  }
+}

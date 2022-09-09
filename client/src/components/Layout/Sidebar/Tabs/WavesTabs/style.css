@@ -1,0 +1,7 @@
+.wave-tabs path {
+    fill: #BFCBDB;
+}
+
+.wave-tabs .current path {
+    fill: #3361FF;
+}

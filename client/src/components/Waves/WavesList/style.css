@@ -1,0 +1,53 @@
+.waves-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.waves-list__item {
+    width: 32%;
+    margin: 0 .5%;
+    min-width: 330px;
+}
+
+.waves-list__item .plans-list__item {
+    width: 100%;
+    cursor: unset;
+}
+
+.waves-list__item-name {
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (max-width: 1260px){
+    .waves-list__item {
+        width: 49%;
+        margin: 0 .5%;
+    }
+}
+
+@media screen and (max-width: 915px){
+    .waves-list__item {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .waves-list__item {
+        width: 49%;
+        margin: 0 .5%;
+    }
+}
+
+@media screen and (max-width: 705px){
+    .waves-list__item {
+        width: 100%;
+        min-width: unset;
+    }
+}
