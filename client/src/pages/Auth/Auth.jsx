@@ -39,6 +39,7 @@ const Auth = observer(() => {
             setTimeout(() => {
                 userState.setIsAuth(true)
                 userState.setUser(response.data)
+                setSuccess(false)
             }, 500)
         }
         setLoading(false)

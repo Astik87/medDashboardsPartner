@@ -25,12 +25,46 @@ const User = sequelize.define('user', {
         defaultValue: false
     },
     refreshToken: {
-        type: DataTypes.STRING
+        type: DataTypes.TEXT
     }
 })
 
-// sequelize.sync({force: true})
+const Plan = sequelize.define('plan', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    dateStart: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    dateEnd: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
+    plan: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    fact: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    type: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+})
+
+// sequelize.sync({alter: true})
 
 module.exports = {
-    User
+    User,
+    Plan
 }

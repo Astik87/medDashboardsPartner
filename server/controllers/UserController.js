@@ -62,7 +62,13 @@ class UserController {
 
     getUsers = async (req, res, next) => {
         try {
-            const {limit, page} = req.query
+            let {limit, page} = req.query
+
+            if(!limit)
+                limit = 25
+
+            if(!page)
+                page = 1
 
             const userService = new UserService()
             const users = await userService.getUsers(+limit, +page)

@@ -21,6 +21,10 @@
     margin-right: 2vw;
 }
 
+ul.profile-list {
+    padding: 0;
+}
+
 @media screen and (max-width: 1200px){
     .user-name, .header-profile .notifications {
         display: none;

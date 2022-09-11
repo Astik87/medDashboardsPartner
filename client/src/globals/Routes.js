@@ -14,6 +14,7 @@ import Auth from "@pages/Auth";
 import Forbidden from "@pages/Forbidden";
 
 import MainTabs from '@components/Layout/Sidebar/AdminTabs/MainTabs'
+import Partners from "@adminPages/Partners";
 
 import LongReadTab from "@components/Layout/Sidebar/Tabs/LongReadTab";
 import WavesTabs from "@components/Layout/Sidebar/Tabs/WavesTabs";
@@ -28,26 +29,26 @@ const authRoutes = [
     //     path: '/events',
     //     Component: <Events />
     // },
-    // {
-    //     path: '/waves',
-    //     Component: <Waves />
-    // },
-    // {
-    //     path: '/waves/visit-plans',
-    //     Component: <VisitPlan baseUri="/visits" />
-    // },
-    // {
-    //     path: '/visits/:page',
-    //     Component: <VisitPlan baseUri="/visits" />
-    // },
-    // {
-    //     path: '/waves/event-plans',
-    //     Component: <EventPlans />
-    // },
-    // {
-    //     path: '/waves/long-read-plans',
-    //     Component: <LongReadPlans />
-    // }
+    {
+        path: '/waves',
+        Component: <Waves />
+    },
+    {
+        path: '/waves/visit-plans',
+        Component: <VisitPlan baseUri="/visits" />
+    },
+    {
+        path: '/visits/:page',
+        Component: <VisitPlan baseUri="/visits" />
+    },
+    {
+        path: '/waves/event-plans',
+        Component: <EventPlans />
+    },
+    {
+        path: '/waves/long-read-plans',
+        Component: <LongReadPlans />
+    }
 ]
 
 const adminRoutes = [
@@ -58,6 +59,10 @@ const adminRoutes = [
     {
         path: '/admin/users',
         Component: <AdminUsers />
+    },
+    {
+        path: '/admin/partners',
+        Component: <Partners />
     },
     {
         path: '/admin/*',

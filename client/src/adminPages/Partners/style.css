@@ -1,0 +1,10 @@
+.panel {
+    padding-top: 15px;
+    height: 80%;
+}
+
+.panel__top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}

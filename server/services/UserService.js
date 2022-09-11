@@ -25,21 +25,32 @@ class UserService {
             throw new ApiError(400, 'Пароль не может быть меньше 6 симвалов')
     }
 
+    /**
+     * Получить всех пользователей
+     * @param {number} limit
+     * @param {number} page
+     * @return {Promise<{count: number | UserDto[]}>}
+     */
     async getUsers(limit = 10, page = 1) {
         const users = await User.findAndCountAll({
             limit,
             offset: (page-1)*limit
         })
 
-        const res = {count: users.count}
-        res.rows = users.rows.map((user) => {
+        const result = {count: users.count}
+        result.rows = users.rows.map((user) => {
             user = new UserDto(user)
             return user
         })
 
-        return res
+        return result
     }
 
+    /**
+     * Удалить пользователей
+     * @param {[number]} userIds
+     * @return {Promise<number>}
+     */
     async deleteUsers(userIds) {
         return await User.destroy({
             where: {
@@ -98,6 +109,11 @@ class UserService {
 
         if(!user)
             throw ApiError.BadRequest('Пользователь с таким логином не найден')
+
+        const passwordEquals = await bcrypt.compare(password, user.passwordHash)
+
+        if(!passwordEquals)
+            throw new ApiError(400, 'Неверный логин или пароль')
 
         const tokenService = new TokenService()
         const userPayload = new UserDto(user)

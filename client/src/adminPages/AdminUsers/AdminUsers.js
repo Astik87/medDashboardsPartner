@@ -149,18 +149,22 @@ const AdminUsers = () => {
             </div>
 
             <Modal
-                onClose={() => setOpenCreateModel(false)}
+                onClose={() => {
+                    setOpenCreateModel(false)
+                    setCreateUserSuccess(false)
+                    setCreateUserError(false)
+                }}
                 open={openCreateModal}>
                 <Fade
                     in={openCreateModal}>
                     <Box sx={modalBoxStyle}>
                         <FormGroup>
                             <Stack spacing={2}>
-                                <TextField onChange={changeNewUserData} value={newUserData.name} required name="name"
+                                <TextField onChange={changeNewUserData} label="Имя" value={newUserData.name} required name="name"
                                            error={!newUserData.name.length}/>
-                                <TextField onChange={changeNewUserData} value={newUserData.login} required name="login"
+                                <TextField onChange={changeNewUserData} label="Логин" value={newUserData.login} required name="login"
                                            error={newUserData.login.length < 3}/>
-                                <TextField onChange={changeNewUserData} value={newUserData.password} required
+                                <TextField onChange={changeNewUserData} label="Пароль" type="password" value={newUserData.password} required
                                            name="password" error={newUserData.password.length < 6}/>
                                 <FormControlLabel
                                     control={<Checkbox checked={!!newUserData.isAdmin} onChange={changeNewUserData}

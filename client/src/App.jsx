@@ -39,26 +39,24 @@ function App() {
         return <Loading/>
 
     return (
-        <React.StrictMode>
-            <BrowserRouter>
-                <div className="app">
-                    <Context.Provider value={{
-                        userState: userState,
-                        filter: new FilterState()
-                    }}>
-                        <Header/>
-                        <div className="content-wrapper">
-                            <Sidebar/>
-                            <div className="content">
-                                <div className="export-page-container">
-                                    <AppRouter/>
-                                </div>
+        <BrowserRouter>
+            <div className="app">
+                <Context.Provider value={{
+                    userState: userState,
+                    filter: new FilterState()
+                }}>
+                    <Header/>
+                    <div className="content-wrapper">
+                        <Sidebar/>
+                        <div className="content">
+                            <div className="export-page-container">
+                                <AppRouter/>
                             </div>
                         </div>
-                    </Context.Provider>
-                </div>
-            </BrowserRouter>
-        </React.StrictMode>
+                    </div>
+                </Context.Provider>
+            </div>
+        </BrowserRouter>
     );
 }
 

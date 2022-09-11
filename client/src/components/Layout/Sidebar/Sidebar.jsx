@@ -1,16 +1,24 @@
-import React from "react"
+import React, {useContext} from "react"
 import {Routes, Route} from 'react-router-dom'
-import {adminSideBarRoutes, sidebarRoutes} from "@globals/Routes";
+import {observer} from "mobx-react"
+
+import {adminSideBarRoutes, sidebarRoutes} from "@globals/Routes"
 
 import './style.css'
+import {Context} from "@/index"
+import NotFound from "@pages/NotFound";
+import NotFoundTab from "@components/Layout/Sidebar/Tabs/NotFoundTab";
 
-const Sidebar = () => {
+const Sidebar = observer(() => {
+
+    const {userState} = useContext(Context)
+
     return (
         <div className="sidebar">
             <Routes>
                 {
                     adminSideBarRoutes.map(({path, Component}) => {
-                        return <Route key={path} path={path} element={Component} />
+                        return <Route key={path} path={path} element={userState.user.isAdmin ? Component : <NotFoundTab />} />
                     })
                 }
                 {
@@ -19,6 +27,6 @@ const Sidebar = () => {
             </Routes>
         </div>
     )
-}
+})
 
 export default Sidebar

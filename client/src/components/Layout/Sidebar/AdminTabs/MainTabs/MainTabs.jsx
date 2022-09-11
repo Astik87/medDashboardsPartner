@@ -25,10 +25,27 @@ const Users = () => {
         <Link to="/admin/users">
             <div className="sidebar-tab-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 10 12" fill="none">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
+                    <path fillRule="evenodd" clipRule="evenodd"
                           d="M7.06393 7H2.9357C1.72068 7.07238 0.644233 7.96299 0.155775 9.3C-0.433376 10.688 0.742426 12 2.10989 12H7.88974C9.25803 12 10.4338 10.688 9.84385 9.3C9.3554 7.96299 8.27894 7.07238 7.06393 7Z"
                           fill="#F7F8FA"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd"
+                    <path fillRule="evenodd" clipRule="evenodd"
+                          d="M8 3C8 4.65685 6.65685 6 5 6C3.34315 6 2 4.65685 2 3C2 1.34315 3.34315 0 5 0C5.79565 0 6.55871 0.31607 7.12132 0.87868C7.68393 1.44129 8 2.20435 8 3Z"
+                          fill="#F7F8FA"/>
+                </svg>
+            </div>
+        </Link>
+    )
+}
+
+const Partners = () => {
+    return (
+        <Link to="/admin/partners">
+            <div className="sidebar-tab-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 10 12" fill="none">
+                    <path fillRule="evenodd" clipRule="evenodd"
+                          d="M7.06393 7H2.9357C1.72068 7.07238 0.644233 7.96299 0.155775 9.3C-0.433376 10.688 0.742426 12 2.10989 12H7.88974C9.25803 12 10.4338 10.688 9.84385 9.3C9.3554 7.96299 8.27894 7.07238 7.06393 7Z"
+                          fill="#F7F8FA"/>
+                    <path fillRule="evenodd" clipRule="evenodd"
                           d="M8 3C8 4.65685 6.65685 6 5 6C3.34315 6 2 4.65685 2 3C2 1.34315 3.34315 0 5 0C5.79565 0 6.55871 0.31607 7.12132 0.87868C7.68393 1.44129 8 2.20435 8 3Z"
                           fill="#F7F8FA"/>
                 </svg>
@@ -39,7 +56,8 @@ const Users = () => {
 
 const routes = [
     {path: '/admin', icon: <Home/>},
-    {path: '/admin/users', icon: <Users/>}
+    {path: '/admin/users', icon: <Users/>},
+    {path: '/admin/partners', icon: <Partners/>}
 ]
 
 const MainTabs = () => {
