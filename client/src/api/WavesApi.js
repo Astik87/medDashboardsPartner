@@ -8,9 +8,9 @@ class WavesApi {
      * @param {number} page
      * @return {Promise<{success: boolean, message: *}|{data: any, success: boolean}>}
      */
-    async getAll(limit, page) {
+    async get(limit, page) {
         try {
-            const response = await authHost.get('/api/waves', {params: {limit, page}})
+            const response = await authHost.get('/api/wave', {params: {limit, page}})
 
             return {success: true, data: response.data}
         } catch (error) {

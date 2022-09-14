@@ -29,8 +29,8 @@ const PlanCard = (props) => {
     const now = new Date()
 
     let status = 'Preparing'
-    const start = new Date(data.start)
-    const end = new Date(data.end)
+    const start = new Date(data.dateStart)
+    const end = new Date(data.dateEnd)
 
     if (end < now)
         status = 'Done'

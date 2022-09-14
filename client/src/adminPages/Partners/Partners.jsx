@@ -4,11 +4,16 @@ import {Tabs, Tab} from '@mui/material'
 import './style.css'
 
 import PlansPanel from "@adminPages/Partners/PlansPanel";
+import WavesPanel from "@adminPages/Partners/WavesPanel";
 
 const Panels = [
     {
         label: 'Plans',
         Component: <PlansPanel />
+    },
+    {
+        label: 'Waves',
+        Component: <WavesPanel />
     }
 ]
 

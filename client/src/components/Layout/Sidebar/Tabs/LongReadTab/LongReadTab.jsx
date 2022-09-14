@@ -1,8 +1,7 @@
 import React from "react"
 import {Link} from "react-router-dom";
-import  {Tab} from "@mui/material"
 
-import SidebarTabs from "../SidearTabs";
+import SidebarTabs from "@components/Layout/Sidebar/SidearTabs";
 
 const Icon = () => {
     return (
@@ -18,11 +17,7 @@ const Icon = () => {
 
 const LongReadTab = () => {
     return (
-        <SidebarTabs>
-                <Tab
-                    className="sidebar-tab"
-                    icon={<Icon/>}/>
-        </SidebarTabs>
+        <SidebarTabs routes={[{path: '/long-read', icon: <Icon/>}]} />
     )
 }
 

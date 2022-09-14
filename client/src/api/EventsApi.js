@@ -76,24 +76,6 @@ class EventsApi {
     }
 
     /**
-     * Получить планы мероприятий по дате
-     * @param {{year: number, month: number, day: number}} filter
-     * @param {number} limit
-     * @param {number} page
-     * @return {Promise<{success: boolean, message: string}|{success: boolean, data: [{name: string, start: string, end: string, plan: number, fact: number}]}>}
-     */
-    async getEventPlans(filter, limit= 15, page= 1) {
-        try {
-            filter = getDateForFilter(filter)
-            const response = await authHost.get('/api/events/plans', {params: {...filter, limit, page}})
-
-            return {success: true, data: response.data}
-        } catch (error) {
-            return {success: false, message: error.message}
-        }
-    }
-
-    /**
      * Получить список планов для react-select
      * @return {Promise<{success: boolean, message: *}|{data: {label: string, value: number}, success: boolean}>}
      */

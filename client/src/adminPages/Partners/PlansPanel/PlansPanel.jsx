@@ -10,7 +10,9 @@ import {
     TextField,
     Select,
     MenuItem,
-    Alert, CircularProgress, Backdrop
+    Alert,
+    CircularProgress,
+    Backdrop
 } from "@mui/material"
 import {DataGrid, GridToolbar} from "@mui/x-data-grid"
 import 'dayjs/locale/ru';
@@ -21,15 +23,15 @@ import {DateTimePicker} from "@mui/x-date-pickers"
 import PlansApi from "@api/PlansApi"
 import AddButton from "@components/General/AddButton"
 import {modalBoxStyle} from "@styles/Modal"
-import {values} from "mobx";
 
 const cols = [
     {field: 'id', width: 50},
-    {field: 'name', width: 150},
-    {field: 'dateStart', width: 200},
-    {field: 'dateEnd', width: 200},
-    {field: 'plan', width: 150},
-    {field: 'fact', width: 150},
+    {field: 'name', headerName: 'Название', width: 150},
+    {field: 'dateStart', headerName: 'Дата начала', width: 200},
+    {field: 'dateEnd', headerName: 'Дата окончания', width: 200},
+    {field: 'plan', headerName: 'Plan', width: 150},
+    {field: 'fact', headerName: 'Fact', width: 150},
+    {field: 'type', headerName: 'Тип', width: 150},
 ]
 
 const planTypeOptions = [
@@ -39,8 +41,6 @@ const planTypeOptions = [
 ]
 
 const PlansPanel = () => {
-
-    const now = new Date()
 
     const [page, setPage] = useState(1)
     const [limit, setLimit] = useState(25)
@@ -63,7 +63,7 @@ const PlansPanel = () => {
 
     const getPlans = async (limit, page) => {
         setLoading(true)
-        const response = await PlansApi.getAll(limit, page)
+        const response = await PlansApi.getAll('', limit, page)
 
         if (!response.success)
             setError(response.message)
@@ -120,6 +120,14 @@ const PlansPanel = () => {
             })
             .finally(() => {
                 getPlans(limit, page)
+                setCreateFormData({
+                    name: '',
+                    dateStart: '',
+                    dateEnd: '',
+                    plan: '',
+                    fact: '',
+                    type: 'event'
+                })
                 setCreatePlanLoading(false)
             })
     }
@@ -131,9 +139,9 @@ const PlansPanel = () => {
                 if(!response.success)
                     return setError(response.message)
 
-                getPlans(limit, page)
             })
             .finally(() => {
+                getPlans(limit, page)
                 setLoading(false)
             })
     }
@@ -149,7 +157,7 @@ const PlansPanel = () => {
         <div className="panel plans-panel">
             <div className="panel__top plans-panel__top">
                 <AddButton onClick={() => setCreateModalOpened(true)}>Create</AddButton>
-                <Button variant="outlined"
+                <Button variant="outlined" disabled={!selected.length} onClick={deletePlans}
                         startIcon={<Delete/>}>Delete</Button>
             </div>
 

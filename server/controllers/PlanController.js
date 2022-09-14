@@ -3,7 +3,7 @@ const PlanService = require('../services/PlanService')
 class PlanController {
     async get(req, res, next) {
         try {
-            let {limit, page} = req.query
+            let {dateFrom, dateTo, type, limit, page} = req.query
 
             if(!limit)
                 limit = 25
@@ -12,7 +12,7 @@ class PlanController {
                 page = 1
 
             const planService = new PlanService()
-            const plans = await planService.getAll(+limit, +page)
+            const plans = await planService.getAll(dateFrom, dateTo, type, +limit, +page)
 
             return res.json(plans)
         } catch (error) {

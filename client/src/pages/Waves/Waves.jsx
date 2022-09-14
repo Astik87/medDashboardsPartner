@@ -23,9 +23,6 @@ class Waves extends BaseWithFilter {
             page: 1,
             limit: 3,
             wavesCount: 0,
-            createModalIsOpen: false,
-            createModalLoading: false,
-            plansSelectOptions: false,
             ...this.state
         }
     }
@@ -37,49 +34,6 @@ class Waves extends BaseWithFilter {
 
     getFiltersList = () => {
         return false
-    }
-
-    pageTopCustomBtn = () => {
-        return <AddButton onClick={this.openCreateWaveModal}>Создвть план</AddButton>
-    }
-
-    /**
-     * Открыть модалку создания волны
-     */
-    openCreateWaveModal = async () => {
-        const {plansSelectOptions} = this.state
-        this.setState({createModalIsOpen: true})
-        if(plansSelectOptions === false) {
-            let eventOptions = await EventsApi.getPlansForSelector()
-            if(!eventOptions.success)
-                return this.setState({error: eventOptions.message})
-
-            let visitOptions = await VisitsApi.getPlansForSelector()
-            if(!visitOptions.success)
-                return this.setState({error: visitOptions.message})
-
-            let longReadOptions = await LongReadApi.getPlansForSelector()
-            if(!longReadOptions.success)
-                return this.setState({error: eventOptions.message})
-
-            visitOptions = visitOptions.data
-            eventOptions = eventOptions.data
-            longReadOptions = longReadOptions.data
-            this.setState({createModalLoading: false, plansSelectOptions: {eventOptions, visitOptions, longReadOptions}})
-        }
-    }
-
-    /**
-     * Закрыть модалку создания волны
-     */
-    closeWaveCreateModal = (reload) => {
-        if(reload === true)
-            setTimeout(() => {
-                const {limit} = this.state
-                this.getWaves(limit, 1)
-            }, 500)
-
-        this.setState({createModalIsOpen: false})
     }
 
     /**
@@ -100,18 +54,6 @@ class Waves extends BaseWithFilter {
     }
 
     /**
-     * Создать волну
-     * @param {string} name
-     * @param {number} visitPlanId
-     * @param {number} eventPlanId
-     * @param {number} longReadPlanId
-     * @return {Promise<{success: boolean, message: string}|{data: {}, success: boolean}>}
-     */
-    createWave = async (name, visitPlanId, eventPlanId, longReadPlanId) => {
-        return await WavesApi.createWave(name, visitPlanId, eventPlanId, longReadPlanId)
-    }
-
-    /**
      * Перейти на страницу page
      * @param {event} event
      * @param {number} page
@@ -128,20 +70,9 @@ class Waves extends BaseWithFilter {
         this.getWaves(event.target.value, 1)
     }
 
-    /**
-     * Удалить волну
-     * @param {number} id
-     * @return {Promise<void>}
-     */
-    deleteWave = async (id) => {
-        const {limit} = this.state
-        await WavesApi.deleteWave(id)
-        this.getWaves(limit, 1)
-    }
-
     content() {
 
-        const {isLoading, error, waves, page, limit, wavesCount, createModalIsOpen, createModalLoading, plansSelectOptions} = this.state
+        const {isLoading, error, waves, page, limit, wavesCount} = this.state
 
         if (isLoading)
             return <Loading/>
@@ -175,8 +106,7 @@ class Waves extends BaseWithFilter {
 
         return (
             <div className="page__content">
-                <WaveCreateModal sendForm={this.createWave} plansSelectOptions={plansSelectOptions} isLoading={createModalLoading} isOpen={createModalIsOpen} onClose={this.closeWaveCreateModal} />
-                <WavesList deleteWave={this.deleteWave} waves={waves}/>
+                <WavesList waves={waves}/>
                 <DashboardBlock className="wave-charts" title="Wave Visits">
                     <LineChart datasets={[visitsPlansChartDatasets, visitFactChartDatasets]}/>
                 </DashboardBlock>

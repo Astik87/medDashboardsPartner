@@ -8,6 +8,7 @@ import {AddButton, DashboardBlock, Loading} from "@components/General";
 import {CreatePlanModal, PlansList} from "@components/Plans";
 import {PlansChart} from "@components/Charts";
 import {TablePagination} from "@mui/material";
+import PlansApi from "@api/PlansApi";
 
 class LongReadPlans extends BaseWithFilter {
     constructor(props) {
@@ -37,13 +38,9 @@ class LongReadPlans extends BaseWithFilter {
         return ['date']
     }
 
-    pageTopCustomBtn = () => {
-        return <AddButton className="add-plan-btn" onClick={this.toggleCreatePlanModal}><span>Создать план</span></AddButton>
-    }
-
     getPlans = async (filter, limit, page) => {
         this.setState({isLoading: true})
-        const response = await LongReadApi.getPlans(filter, limit, page)
+        const response = await PlansApi.get(filter, 'longRead', limit, page)
         if(!response.success)
             return this.setState({error: response.message, isLoading: false})
 

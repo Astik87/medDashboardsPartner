@@ -1,3 +1,3 @@
-import SidebarTabs from "./SidearTabs";
+import SidebarTabs from "../SidearTabs";
 
 export default SidebarTabs

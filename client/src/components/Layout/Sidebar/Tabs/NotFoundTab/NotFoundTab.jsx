@@ -1,8 +1,7 @@
 import React from "react"
 import {Link, useLocation} from "react-router-dom"
-import {Tab} from "@mui/material"
 
-import SidebarTabs from "../SidearTabs"
+import SidebarTabs from "@components/Layout/Sidebar/SidearTabs"
 
 const Icon = () => {
     const location = useLocation()
@@ -18,13 +17,11 @@ const Icon = () => {
 }
 
 const NotFoundTab = () => {
+
+    const currentPath = useLocation().pathname
+
     return (
-        <SidebarTabs>
-            <Tab
-                className="sidebar-tab"
-                icon={<Icon/>}>
-            </Tab>
-        </SidebarTabs>
+        <SidebarTabs routes={[{path: currentPath, icon: <Icon />}]} />
     )
 }
 

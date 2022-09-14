@@ -6,15 +6,33 @@ const {Plan} = require('../models')
 class PlanService {
     /**
      * Получить планы
+     * @param {string} dateFrom
+     * @param {string} dateTo
+     * @param {string} type
      * @param {number} limit
      * @param {number} page
      * @return {Promise<{count: number, rows: Plan[]}>}
      */
-    async getAll(limit = 25, page = 1) {
-        console.log('asdf')
+    async getAll(dateFrom, dateTo, type, limit = 25, page = 1) {
+
+        dateFrom = new Date(dateFrom)
+        dateTo = new Date(dateTo)
+
+        let where = {}
+
+        if(type)
+            where.type = type
+
+        if (dateFrom.getTime() && dateTo.getTime())
+            where.dateEnd = {
+                [Op.gte]: dateFrom,
+                [Op.lte]: dateTo
+            }
+
         return await Plan.findAndCountAll({
+            where,
             limit,
-            offset: (page-1)*limit
+            offset: (page - 1) * limit
         })
     }
 
@@ -29,25 +47,25 @@ class PlanService {
         dateStart = new Date(dateStart)
         dateEnd = new Date(dateEnd)
 
-        if(!name || name.length < 3)
+        if (!name || name.length < 3)
             throw ApiError.BadRequest('Название не может быть меньше 3 симвалов')
 
-        if(!dateStart || !dateStart.getTime())
+        if (!dateStart || !dateStart.getTime())
             throw ApiError.BadRequest('Введите дату начала')
 
-        if(!dateEnd || !dateEnd.getTime())
+        if (!dateEnd || !dateEnd.getTime())
             throw ApiError.BadRequest('Введите дату окончания')
 
-        if(dateEnd < dateStart)
+        if (dateEnd < dateStart)
             throw ApiError.BadRequest('Дата начала не может быть больше даты окончания')
 
-        if(!plan)
+        if (!plan)
             throw ApiError.BadRequest('Введите plan')
 
-        if(!type)
+        if (!type)
             throw ApiError.BadRequest('Введите тип')
 
-        if(!fact)
+        if (!fact)
             throw ApiError.BadRequest('Введите fact')
 
         return await Plan.create(data)
@@ -59,7 +77,7 @@ class PlanService {
      * @return {Promise<number>}
      */
     async delete(planIds) {
-        if(!planIds.length)
+        if (!planIds.length)
             throw ApiError.BadRequest('planIds is empty')
 
         return await Plan.destroy({

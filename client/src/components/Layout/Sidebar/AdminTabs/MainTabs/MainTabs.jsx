@@ -1,10 +1,8 @@
-import {Link, useLocation} from "react-router-dom";
-import {Tab} from "@mui/material"
-
+import {Link} from "react-router-dom";
 import './style.css'
 
-import SidebarTabs from "@components/Layout/Sidebar/Tabs";
-import React from "react";
+import SidebarTabs from "@components/Layout/Sidebar/SidearTabs";
+import React, {useEffect, useState} from "react";
 
 const Home = () => {
     return (
@@ -61,16 +59,8 @@ const routes = [
 ]
 
 const MainTabs = () => {
-    const currentPath = useLocation().pathname
     return (
-        <SidebarTabs className="admin-tabs">
-            {
-                routes.map(({path, icon}) => {
-                    const isCurrent = currentPath === path
-                    return <Tab key={path} icon={icon} className={`sidebar-tab ${isCurrent ? 'current' : ''}`}/>
-                })
-            }
-        </SidebarTabs>
+        <SidebarTabs className="admin-tabs" routes={routes} />
     )
 }
 

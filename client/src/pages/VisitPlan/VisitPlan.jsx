@@ -16,6 +16,7 @@ import {PlansChart} from "@components/Charts"
 
 import {withRouter} from "@utils/RouteUtils"
 import PlansList from "@components/Plans/PlansList";
+import PlansApi from "@api/PlansApi";
 
 class VisitPlan extends BaseWithFilter {
 
@@ -29,10 +30,8 @@ class VisitPlan extends BaseWithFilter {
             limit: 15,
             plans: false,
             plansCount: false,
-            currentPlan: false,
             isLoading: true,
             error: false,
-            openedCreatePlanModal: false,
             ...this.state
         }
     }
@@ -43,15 +42,6 @@ class VisitPlan extends BaseWithFilter {
      */
     getFiltersList = () => {
         return ['date']
-    }
-
-    /**
-     * Кастомная кнопка рядом с кнопкой экспорта страницы
-     */
-    pageTopCustomBtn = () => {
-        return (
-            <AddButton className="add-plan-btn" onClick={this.toggleCreatePlanModal}><span>Создать план</span></AddButton>
-        )
     }
 
     /**
@@ -86,13 +76,13 @@ class VisitPlan extends BaseWithFilter {
             return false
 
         this.setState({isLoading: true})
-        VisitsApi.getPlans(filter, page, limit).then(response => {
+        PlansApi.get(filter, 'visits', limit, page).then(response => {
             if (!response.success)
                 this.setState({error: response.message})
             else
                 this.setState({
-                    plans: response.plans.rows,
-                    plansCount: response.plans.count,
+                    plans: response.data.rows,
+                    plansCount: response.data.count,
                     isLoading: false,
                     page: page
                 })
@@ -100,47 +90,10 @@ class VisitPlan extends BaseWithFilter {
     }
 
     /**
-     * Открвть дктатьную информацию прлана
-     * @param {number} planIndex индекс плана в массиве this.state.plans
-     */
-    setCurrentPlan = (planIndex) => {
-        this.setState({currentPlan: planIndex})
-    }
-
-    /**
-     * Компонент модалки с детальной информацией о плане
-     * @param {number} planIndex индекс плана в массиве this.state.plans
-     * @return {boolean|*}
-     */
-    getPlanDetailElement(planIndex) {
-        const {plans} = this.state
-        const plan = planIndex ? plans[planIndex] : false
-
-        return (<PlanDetailModal plan={plan} close={this.closePlan}/>)
-    }
-
-    /**
      * Закрыть модалку с детальной информацией плана
      */
     closePlan = () => {
         this.setState({currentPlan: false})
-    }
-
-    /**
-     * Показать/скрыть модалку создания нового плана
-     * @param {boolean} reload нужно ли заново получить все планы и перезагрузить компонент
-     */
-    toggleCreatePlanModal = (reload) => {
-        const {openedCreatePlanModal} = this.state
-
-        if (reload === true) {
-            setTimeout(() => {
-                const {filter, limit} = this.state
-                this.getPlans(filter, 1, limit)
-            }, 500)
-        }
-
-        this.setState({openedCreatePlanModal: !openedCreatePlanModal})
     }
 
     changePage = (event, page) => {
@@ -152,30 +105,6 @@ class VisitPlan extends BaseWithFilter {
         this.setState({limit: +event.target.value})
         const {filter} = this.state
         this.getPlans(filter, 1, +event.target.value)
-    }
-
-    /**
-     * Созать план
-     * @param {string} name
-     * @param {Date} start
-     * @param {Date} end
-     * @param {number} plan
-     * @return {Promise<{success: boolean, message: string}>}
-     */
-    createPlan = async (name, start, end, plan) => {
-        return await VisitsApi.createPlan(name, start, end, plan)
-    }
-
-    /**
-     * Удалить план
-     * @param {number} planIndex
-     * @return {Promise<{success: boolean, message: string}|{data: *, success: boolean}>}
-     */
-    deletePlan = async (planIndex) => {
-        const {plans} = this.state
-        await VisitsApi.deletePlan(plans[planIndex].id)
-        const {filter, limit} = this.state
-        this.getPlans(filter, 1, limit)
     }
 
     content = () => {
@@ -190,9 +119,8 @@ class VisitPlan extends BaseWithFilter {
         const currentPlanItem = currentPlan !== false ? plans[currentPlan] : false
         return (
             <div className="plans-page page__content">
-                <CreatePlanModal onSendForm={this.createPlan} isOpen={openedCreatePlanModal} onClose={this.toggleCreatePlanModal}/>
                 <PlanDetailModal plan={currentPlanItem} close={this.closePlan}/>
-                <PlansList deletePlan={this.deletePlan} plansList={plans} setCurrentPlan={this.setCurrentPlan} />
+                <PlansList deletePlan={this.deletePlan} plansList={plans} />
                 <DashboardBlock title="Total touch" className="plans-chart">
                     <PlansChart plans={plans}/>
                 </DashboardBlock>

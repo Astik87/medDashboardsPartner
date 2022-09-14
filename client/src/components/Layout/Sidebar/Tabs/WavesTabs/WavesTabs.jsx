@@ -1,10 +1,9 @@
 import React from "react"
-import {Link, useLocation} from "react-router-dom";
-import {Tab} from "@mui/material"
+import {Link} from "react-router-dom";
 
 import './style.css'
 
-import SidebarTabs from "@components/Layout/Sidebar/Tabs";
+import SidebarTabs from "@components/Layout/Sidebar/SidearTabs";
 
 const WavesIcon = () => {
     return (
@@ -67,17 +66,8 @@ const routes = [
 ]
 
 const WavesTabs = () => {
-    const currentPath = useLocation().pathname
-
     return (
-        <SidebarTabs className="wave-tabs">
-            {
-                routes.map(({path, icon}) => {
-                    const isCurrent = currentPath === path
-                    return <Tab key={path} icon={icon} className={`sidebar-tab ${isCurrent ? 'current' : ''}`}/>
-                })
-            }
-        </SidebarTabs>
+        <SidebarTabs routes={routes} className="wave-tabs" />
     )
 }
 

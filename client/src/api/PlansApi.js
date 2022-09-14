@@ -1,9 +1,21 @@
 import {authHost} from "@api/Main";
+import {getDateForFilter} from "@utils/DateUtils";
 
 class PlansApi {
-    async getAll(limit = 25, page = 1) {
+    async getAll(type = '', limit = 25, page = 1) {
         try {
-            const response = await authHost.get('/api/plan', {params: {limit, page}})
+            const response = await authHost.get('/api/plan', {params: {limit, page, type}})
+
+            return {success: true, data: response.data}
+        } catch (error) {
+            return {success: false, message: error.message}
+        }
+    }
+
+    async get(filter, type = 'event', limit= 15, page= 1) {
+        try {
+            filter = getDateForFilter(filter)
+            const response = await authHost.get('/api/plan', {params: {...filter, limit, page, type}})
 
             return {success: true, data: response.data}
         } catch (error) {

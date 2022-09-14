@@ -6,6 +6,7 @@ import {AddButton, DashboardBlock, Loading} from "@components/General";
 import {PlansList, CreatePlanModal} from "@components/Plans";
 import {PlansChart} from "@components/Charts";
 import {TablePagination} from "@mui/material";
+import PlansApi from "@api/PlansApi";
 
 class EventPlans extends BaseWithFilter {
 
@@ -38,21 +39,12 @@ class EventPlans extends BaseWithFilter {
     }
 
     /**
-     * Кастомная кнопка рядом с кнопкой экспорта страницы
-     */
-    pageTopCustomBtn = () => {
-        return (
-            <AddButton className="add-plan-btn" onClick={this.toggleCreatePlanModal}><span>Создать план</span></AddButton>
-        )
-    }
-
-    /**
      * Обновить планы на странице
      * @return {Promise<void>}
      */
     getPlans = async (filter, limit, page) => {
         this.setState({isLoading: true})
-        EventsApi.getEventPlans(filter, limit, page).then(response => {
+        PlansApi.get(filter, 'event', limit, page).then(response => {
             if(!response.success) {
                 this.setState({error: response.message, isLoading: false, limit, page})
                 return false
@@ -89,17 +81,6 @@ class EventPlans extends BaseWithFilter {
         return await EventsApi.createPlan(name, start, end, plan)
     }
 
-    /**
-     * Удалить план
-     * @param {number} planIndex
-     * @return {Promise<void>}
-     */
-    deletePlan = async (planIndex) => {
-        const {plans, filter, limit} = this.state
-        await EventsApi.deletePlan(plans[planIndex].id)
-        this.getPlans(filter, limit, 1)
-    }
-
     changePage = (event, page) => {
         this.getPlans(this.state.filter, this.state.limit, page+1)
     }
@@ -120,7 +101,7 @@ class EventPlans extends BaseWithFilter {
 
         return (
             <div className="page__content">
-                <PlansList deletePlan={this.deletePlan} plansList={plans} />
+                <PlansList plansList={plans} />
                 <CreatePlanModal isOpen={openedCreatePlanModal} onClose={this.toggleCreatePlanModal} onSendForm={this.createPlan}/>
                 <DashboardBlock title="Total touch" className="plans-chart">
                     <PlansChart plans={plans} />

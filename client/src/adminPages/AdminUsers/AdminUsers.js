@@ -33,8 +33,6 @@ const cols = [
     {field: 'refreshToken', width: 200},
 ]
 
-const CreateButton = styled(Button)(sendBtnStyle)
-
 const AdminUsers = () => {
 
     const [limit, setLimit] = useState(25)

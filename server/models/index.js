@@ -62,9 +62,44 @@ const Plan = sequelize.define('plan', {
     }
 })
 
+const Wave = sequelize.define('wave', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    visitPlanId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    eventPlanId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    longReadPlanId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
+})
+
+Plan.hasOne(Wave, {as: 'visitPlan', foreignKey: 'id'})
+Wave.belongsTo(Plan, {as: 'visitPlan', foreignKey: 'visitPlanId'})
+
+Plan.hasOne(Wave, {as: 'eventPlan', foreignKey: 'id'})
+Wave.belongsTo(Plan, {as: 'eventPlan', foreignKey: 'eventPlanId'})
+
+Plan.hasOne(Wave, {as: 'longReadPlan', foreignKey: 'id'})
+Wave.belongsTo(Plan, {as: 'longReadPlan', foreignKey: 'longReadPlanId'})
+
 // sequelize.sync({alter: true})
 
 module.exports = {
     User,
-    Plan
+    Plan,
+    Wave
 }
