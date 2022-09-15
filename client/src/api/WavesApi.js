@@ -28,7 +28,7 @@ class WavesApi {
      */
     async createWave(name, visitPlanId, eventPlanId, longReadPlanId) {
         try {
-            const response = await authHost.post('/api/waves', {name, visitPlanId, eventPlanId, longReadPlanId})
+            const response = await authHost.post('/api/wave', {name, visitPlanId, eventPlanId, longReadPlanId})
 
             return {success: true, data: response.data}
         } catch (error) {
@@ -38,12 +38,12 @@ class WavesApi {
 
     /**
      * Удалить волну
-     * @param {number} id
+     * @param {number} waveIds
      * @return {Promise<{success: boolean, message: string}|{data: {}, success: boolean}>}
      */
-    async deleteWave(id) {
+    async deleteWave(waveIds) {
         try {
-            const response = await authHost.delete('/api/waves', {params: {id}})
+            const response = await authHost.delete('/api/wave', {data: {waveIds}})
 
             return {success: true, data: response.data}
         } catch (error) {

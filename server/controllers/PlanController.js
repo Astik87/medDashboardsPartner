@@ -20,6 +20,15 @@ class PlanController {
         }
     }
 
+    async getForSelector(req, res, next) {
+        try {
+            const planService = new PlanService()
+            return res.json(await planService.getForSelector())
+        } catch (error) {
+
+        }
+    }
+
     async create(req, res, next) {
         try {
             const planService = new PlanService()

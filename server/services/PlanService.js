@@ -36,6 +36,26 @@ class PlanService {
         })
     }
 
+    async getForSelector() {
+        const plans = await Plan.findAll({
+            attributes: [['id', 'value'], 'type', ['name', 'label']]
+        })
+
+        const result = {
+            event: [],
+            visits: [],
+            longRead: []
+        }
+
+        plans.forEach((plan) => {
+            plan = plan.toJSON()
+
+            result[plan.type].push(plan)
+        })
+
+        return result
+    }
+
     /**
      * Создать план
      * @param data

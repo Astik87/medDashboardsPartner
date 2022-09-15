@@ -45,7 +45,7 @@ class Waves extends BaseWithFilter {
     getWaves = async (limit, page) => {
         this.setState({isLoading: true})
 
-        const response = await WavesApi.getAll(limit, page)
+        const response = await WavesApi.get(limit, page)
 
         if (!response.success)
             return this.setState({error: response.message, isLoading: false})

@@ -23,6 +23,16 @@ class PlansApi {
         }
     }
 
+    async getPlansForSelector() {
+        try {
+            const response = await authHost.get('/api/plan/for-selector')
+
+            return {success: true, data: response.data}
+        } catch (error) {
+            return {success: false, message: 'Не удалось загрузить планы'}
+        }
+    }
+
     async create(data) {
         try {
             const response = await authHost.post('/api/plan', data)
