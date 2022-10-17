@@ -1,5 +1,6 @@
 const sequelize = require('../db')
 const {DataTypes} = require('sequelize')
+const bcrypt = require('bcrypt')
 
 const User = sequelize.define('user', {
     id: {
@@ -97,6 +98,18 @@ Plan.hasOne(Wave, {as: 'longReadPlan', foreignKey: 'id'})
 Wave.belongsTo(Plan, {as: 'longReadPlan', foreignKey: 'longReadPlanId'})
 
 // sequelize.sync({alter: true})
+
+const createUser = async () => {
+    return await User.create({
+        name: 'admin',
+        login: 'admin',
+        passwordHash: await bcrypt.hash('123456', 3),
+        isAdmin: 1,
+        refreshToken: ''
+    })
+}
+
+// createUser()
 
 module.exports = {
     User,

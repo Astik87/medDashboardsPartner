@@ -11,7 +11,7 @@
     min-height: 200px;
     cursor: pointer;
     position: relative;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .plan-actions {
@@ -38,7 +38,7 @@
 }
 
 .plans-list__item-left,
-.plans-list__item-right{
+.plans-list__item-right {
     display: flex;
     flex-direction: column;
 }
@@ -83,7 +83,7 @@
     color: #ffffff;
 }
 
-.plans-list__item.green .plans-list__item-block__value  {
+.plans-list__item.green .plans-list__item-block__value {
     background-color: #34C759;
 }
 
@@ -92,7 +92,7 @@
     color: #34c759;
 }
 
-.plans-list__item.blue .plans-list__item-block__value  {
+.plans-list__item.blue .plans-list__item-block__value {
     background-color: #3361FF;
 }
 
@@ -101,7 +101,7 @@
     color: #3361FF;
 }
 
-.plans-list__item.yellow .plans-list__item-block__value  {
+.plans-list__item.yellow .plans-list__item-block__value {
     background-color: #FF9500;
 }
 
@@ -110,20 +110,41 @@
     color: #FF9500;
 }
 
-@media screen and (max-width: 1300px){
+.plans-list__item.red .plans-list__item-block__value {
+    background-color: #d32f2f;
+}
+
+.plans-list__item.red .plans-list__item-result-percent,
+.plans-list__item.red .plans-list__item-status {
+    color: #d32f2f;
+}
+
+.plans-list__item-title {
+    position: absolute;
+    top: -7px;
+    left: 10px;
+}
+
+.plans-list__item-name span {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 1300px) {
     .plans-list__item {
         width: 48%;
         margin: 0 1% 20px;
     }
 }
 
-@media screen and (max-width: 992px){
+@media screen and (max-width: 992px) {
     .plans-list__item {
         width: 100%;
     }
 }
 
-@media screen and (max-width: 420px){
+@media screen and (max-width: 420px) {
+
     .plans-list__item-block,
     .plans-list__item-start,
     .plans-list__item-end {
